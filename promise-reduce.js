@@ -36,3 +36,8 @@ async function promiseReduce(asyncFunctions, reduce, initialValue) {
         return initialValue;
     }
 }
+
+// 4) With Array.reduce
+async function promiseReduce(asyncFunctions, reduce, initialValue) {
+    return asyncFunctions.reduce(async (accumulator, asyncFn) => reduce(await accumulator, await asyncFn()), initialValue);
+}
